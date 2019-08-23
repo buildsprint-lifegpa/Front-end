@@ -1,5 +1,6 @@
 import React from 'react'
 import * as Yup from 'yup'
+import { Link } from 'react-router-dom'
 import { Button, Icon, Grid } from 'semantic-ui-react'
 import { Formik, Form, Field, withFormik } from 'formik'
 
@@ -7,7 +8,7 @@ import { Formik, Form, Field, withFormik } from 'formik'
 const SignInPage = () => {
 
   const signUpLink = (
-    <a href='#'>Sign Up.</a>
+    <Link to='/sign-up'>Sign Up.</Link>
   )
 
   return (

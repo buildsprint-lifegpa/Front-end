@@ -10,6 +10,7 @@ const Home = () => {
       <Button
         content='JOIN NOW!'
         as={Link}
+        to='/sign-up'
       />
       <Button
         content='SIGN IN'

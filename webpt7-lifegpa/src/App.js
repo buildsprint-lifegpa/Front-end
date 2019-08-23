@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import DemoComponent from './Components/DemoComponent';
+import SignInPage from './Components/SignInPage';
 
 function App() {
   return (
     <div className="App">
-      <DemoComponent />
+      <SignInPage />
     </div>
   );
 }

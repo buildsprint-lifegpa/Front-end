@@ -12,7 +12,7 @@ const SignInPage = () => {
 
   return (
 
-    <Grid className="sign-up-form">
+    <Grid className="sign-in-form">
       <Grid.Column>
         <h4>Logo</h4>
         <Icon

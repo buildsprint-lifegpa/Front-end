@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+
 import {withFormik,Form,Field} from 'formik';
 
 function NewUser(){
@@ -22,12 +23,15 @@ function NewUser(){
                        name='name' 
                        placeholder='Full Name'
                 />
+               <br/> <br/>
+
                 <Field className='field'
                        component='input'
                        type='text' 
                        name='email' 
                        placeholder='Email Address'
                 />
+                <br/> <br/>
 
                 <Field className='field'
                        component='input'
@@ -35,10 +39,14 @@ function NewUser(){
                        name='password' 
                        placeholder='Password'
                 />
+                <br/> <br/>
 
                 <button type='submit'>Sign Up</button>
+
+                
                 
             </Form>  
+
         </div>
 
 
@@ -55,6 +63,7 @@ const FormikSignUp = withFormik({
     },
     handleSubmit(values){
         console.log(values);
+
     }
 })(NewUser);
 

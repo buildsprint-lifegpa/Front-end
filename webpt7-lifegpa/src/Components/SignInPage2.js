@@ -59,9 +59,9 @@ const LogIn = ({ errors, touched, values, status }) => {
           <h1>Welcome Back!</h1>
           <Formik>
             <Form>
-              <Form.Input fluid name='email' placeholder='Email' as={Field} />
+              <Form.Input fluid name='email' placeholder='Email' />
               {touched.email && errors.email && <p className='error'>{errors.email}</p>}
-              <Form.Input fluid name='password' placeholder='Password' as={Field} />
+              <Form.Input fluid name='password' placeholder='Password' />
               {touched.email && errors.password && <p className='error'>{errors.password}</p>}
               <Button fluid type='submit' content='SIGN IN' />
             </Form>

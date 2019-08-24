@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Route } from 'react-router-dom'
-import SignInPage from './Components/SignInPage';
+import SignInPage from './Components/SignInPage2';
 import Home from './Components/Home';
 import FormikSignUp from './Components/SignUp';
 import PrivateRoute from './Components/PrivateRoute';
@@ -14,8 +14,8 @@ function App() {
     <div className="App">
       <Route exact path='/' component={Home} />
       <Route exact path="/sign-in" component={SignInPage} />
-      <Route exact path='/sign-up' component={FormikSignUp}/>
-      <PrivateRoute path="/dashboard" component={Dashboard}/>
+      <Route exact path='/sign-up' component={FormikSignUp} />
+      <Route path="/dashboard" component={Dashboard} />
     </div>
   );
 }

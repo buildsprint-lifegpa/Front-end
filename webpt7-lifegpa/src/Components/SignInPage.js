@@ -7,7 +7,7 @@ import { Formik, Form, Field, withFormik } from 'formik'
 const SignInPage = () => {
 
   const signUpLink = (
-    <a href='#'>Sign Up.</a>
+    <a href='/sign-up'>Sign Up.</a>
   )
 
   return (

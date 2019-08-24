@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import { Route } from 'react-router-dom'
-import SignInPage from './Components/SignInPage2';
+import SignInPage from './Components/SignInPage';
 import Home from './Components/Home';
 import FormikSignUp from './Components/SignUp';
-import PrivateRoute from './Components/PrivateRoute';
+// import PrivateRoute from './Components/PrivateRoute';
 import Dashboard from './Components/Dashboard';
 
 

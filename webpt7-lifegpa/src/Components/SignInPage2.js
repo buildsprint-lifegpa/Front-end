@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import * as Yup from 'yup'
 import { Link } from 'react-router-dom'
 import { Form, Button, Icon, Grid } from 'semantic-ui-react'
-import { withFormik, Formik } from 'formik'
+import { Field, withFormik, Formik } from 'formik'
 import styled from 'styled-components'
 
 const SignInContainer = styled.section`
@@ -23,7 +23,6 @@ const SignInContainer = styled.section`
     form {
       margin-bottom: 20px;
     }
-
 `;
 
 const LogInHeader = styled.header`
@@ -54,6 +53,7 @@ const LogIn = ({ errors, touched, values, status }) => {
             <Icon
               name='user circle'
               size="huge"
+              color='grey'
             />
           </LogInHeader>
           <h1>Welcome Back!</h1>
@@ -66,7 +66,6 @@ const LogIn = ({ errors, touched, values, status }) => {
               <Button fluid type='submit' content='SIGN IN' />
             </Form>
           </Formik>
-
           <p>Don't have an account? {signUpLink}</p>
         </Grid.Column>
       </Grid>

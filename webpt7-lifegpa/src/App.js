@@ -6,6 +6,7 @@ import Home from './Components/Home';
 import FormikSignUp from './Components/SignUp';
 // import PrivateRoute from './Components/PrivateRoute';
 import Dashboard from './Components/Dashboard';
+import AppFooter from './Components/AppFooter';
 import ChooseHabit from './Components/HabitSelect';
 
 
@@ -16,8 +17,9 @@ function App() {
       <Route exact path='/' component={Home} />
       <Route exact path="/sign-in" component={SignInPage} />
       <Route exact path='/sign-up' component={FormikSignUp} />
-      <Route path='/choose-habit' component={ChooseHabit}/>
+      <Route path='/choose-habit' component={ChooseHabit} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/dashboard" component={AppFooter} />
     </div>
   );
 }

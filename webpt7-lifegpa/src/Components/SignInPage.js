@@ -5,15 +5,17 @@ import { Button, Icon, Grid } from 'semantic-ui-react'
 import { Form, Field, withFormik } from 'formik'
 import styled from 'styled-components'
 
+import AppHeader from './AppHeader';
+import userImage from '../assets/large.png'
+
+// import { user } from '../dummyData';
+
 const SignInContainer = styled.section`
-  max-width: 300px;
+  max-width: 80%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-
-    header {
-      margin-top: 20px;
-    }
+  cursor: auto;
 
     h1 {
       text-align: center;
@@ -36,14 +38,17 @@ const SignInContainer = styled.section`
         margin-top: 10px;
       }
     }
-
-
 `;
 
-const LogInHeader = styled.header`
-  display: flex;
-  justify-content: space-between;
-`;
+const btnStyle = {
+  backgroundColor: "#6A9790",
+  border: '1px solid #6A9790'
+}
+
+const activeStyle = {
+  backgroundColor: '#eeeeee',
+  color: '#777777'
+}
 
 
 
@@ -55,8 +60,9 @@ const LogIn = ({ errors, touched, values, status }) => {
       return setUser(status)
     }
   }, [status])
+
   const signUpLink = (
-    <Link to='/sign-up'>Sign Up.</Link>
+    <Link to='/sign-up' className='sign-up-link'>Sign Up.</Link>
   )
 
 
@@ -64,14 +70,8 @@ const LogIn = ({ errors, touched, values, status }) => {
     <SignInContainer>
       <Grid className="sign-in-form">
         <Grid.Column>
-          <LogInHeader>
-            <h4>Logo</h4>
-            <Icon
-              name='user circle'
-              size="huge"
-              color='grey'
-            />
-          </LogInHeader>
+          <AppHeader
+            userPhoto={userImage} />
           <h1>Welcome Back!</h1>
           <Grid.Column>
             <Form>
@@ -91,8 +91,13 @@ const LogIn = ({ errors, touched, values, status }) => {
               {touched.password && errors.password && <p className='error'>{errors.password}</p>}
               <Button
                 fluid
+                primary
+                style={btnStyle}
                 content='SIGN IN'
                 type='submit'
+                as={Link}
+                to="/Dashboard"
+                color='vk'
               />
             </Form>
           </Grid.Column>
@@ -120,6 +125,7 @@ const SignInPage = withFormik({
     console.log(values)
     setStatus(values)
     resetForm()
+    localStorage.setItem('token', values.email)
   }
 })(LogIn)
 

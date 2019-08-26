@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import * as Yup from 'yup'
+import { Link } from 'react-router-dom'
 import { Button, Icon, Grid } from 'semantic-ui-react'
 import {withFormik,Form,Field} from 'formik';
 import styled from 'styled-components';
@@ -20,16 +21,25 @@ i{
     display:flex;
     flex-direction: column;
 }
+.errors{
+    margin:10px 0;
+    color:white;
+    background-color:red;
+    padding:5px;
+
+}
 .button{
 
     width:150px;
     align-self:center;
     background-color: red;
+    padding:20px;
 }
 p{
    font-size:1.25rem;
     vertical-align:middle;
     text-align:center;
+
 }
 `;
 
@@ -113,7 +123,12 @@ function NewUser({errors,touched}){
 
                 <br/> <br/>
   </Inputs>
-                <Button type='submit'content='Sign Up'/>
+                <Button
+                type='submit'
+                content='Sign Up'
+                as={Link}
+                to='/dashboard'
+                />
                 <br/> <br/>
 
                 <p>Already have an account? {signIn}</p>

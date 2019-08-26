@@ -6,7 +6,7 @@ import { Form, Field, withFormik } from 'formik'
 import styled from 'styled-components'
 
 import AppHeader from './AppHeader';
-import { user } from '../dummyData';
+// import { user } from '../dummyData';
 
 const SignInContainer = styled.section`
   max-width: 80%;

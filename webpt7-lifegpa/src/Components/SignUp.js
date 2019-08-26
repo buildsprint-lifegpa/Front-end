@@ -127,7 +127,7 @@ function NewUser({errors,touched}){
                 type='submit'
                 content='Sign Up'
                 as={Link}
-                to='/dashboard'
+                to='/choose-habit'
                 />
                 <br/> <br/>
 

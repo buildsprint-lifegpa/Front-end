@@ -5,6 +5,56 @@ import { Button, Icon, Grid } from 'semantic-ui-react'
 import {withFormik,Form,Field} from 'formik';
 import styled from 'styled-components';
 
+const Wrapper = styled.section`
+max-width:100%;
+h2{
+    margin-bottom:25px;
+    text-align:center;
+}
+i{
+    width:400px;
+    margin-left:5px;
+    align-self:center;
+}
+.form{
+    display:flex;
+    flex-direction: column;
+}
+.button{
+
+    width:150px;
+    align-self:center;
+    background-color: red;
+}
+p{
+   font-size:1.25rem;
+    vertical-align:middle;
+    text-align:center;
+}
+`;
+
+const SignUpHeader =styled.header`
+display:flex;
+flex-direction: column;
+align-items:center;
+margin: 10px auto;
+
+`;
+
+const Inputs = styled.section`
+display:flex;
+flex-direction:column;
+align-items:center;
+width:100%;
+.field{
+   
+   width:200px;
+   border-radius:10px;
+   text-align:center;
+}
+
+`;
+
 function NewUser({errors,touched}){
 
     const signIn=(
@@ -13,21 +63,23 @@ function NewUser({errors,touched}){
     console.log("Input is being read", touched);
 
     return(
-
+    <Wrapper>
         <Grid className='sign-up-form'>
+           
             <Grid.Column>
+
+            <SignUpHeader>
+                
             <Icon
             name='user circle outline'
             size='big'
             />
-            <h4>Welcome to a new you!</h4>
-
-        <div className='onboarding'>
-
-        
+            <h2>Welcome to a new you!</h2>
+          
+            </SignUpHeader>
+         
             <Form className='form'>
-                
-                
+             <Inputs>
                 <Field className='field'
                        component='input'
                        type='text' 
@@ -60,17 +112,17 @@ function NewUser({errors,touched}){
                 {errors.password}</p>)}
 
                 <br/> <br/>
-
+  </Inputs>
                 <Button type='submit'content='Sign Up'/>
                 <br/> <br/>
 
                 <p>Already have an account? {signIn}</p>
-
+               
             </Form>  
-        </div>
+        
      </Grid.Column>
     </Grid>
-
+  </Wrapper>
     );
 }
 const FormikSignUp = withFormik({

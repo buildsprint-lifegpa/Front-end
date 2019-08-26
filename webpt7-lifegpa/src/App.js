@@ -15,7 +15,7 @@ function App() {
       <Route exact path='/' component={Home} />
       <Route exact path="/sign-in" component={SignInPage} />
       <Route exact path='/sign-up' component={FormikSignUp}/>
-      <PrivateRoute path="/dashboard" component={Dashboard}/>
+      <Route path="/dashboard" component={Dashboard}/>
     </div>
   );
 }

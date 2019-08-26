@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import * as Yup from 'yup'
 import { Link } from 'react-router-dom'
-import { Button, Icon, Grid } from 'semantic-ui-react'
-import { Form, Field, withFormik } from 'formik'
+import { Form, Button, Icon, Grid } from 'semantic-ui-react'
+import { Field, withFormik, Formik } from 'formik'
 import styled from 'styled-components'
 
 const SignInContainer = styled.section`
@@ -22,29 +22,13 @@ const SignInContainer = styled.section`
 
     form {
       margin-bottom: 20px;
-
-      input {
-        width: 100%;
-        min-height: 2.2em;
-        border: 0.5px solid grey;
-        border-radius: 2px;
-        margin: 10px 0;
-        padding: 5px;
-      }
-
-      .button {
-        margin-top: 10px;
-      }
     }
-
-
 `;
 
 const LogInHeader = styled.header`
   display: flex;
   justify-content: space-between;
 `;
-
 
 
 const LogIn = ({ errors, touched, values, status }) => {
@@ -73,29 +57,15 @@ const LogIn = ({ errors, touched, values, status }) => {
             />
           </LogInHeader>
           <h1>Welcome Back!</h1>
-          <Grid.Column>
+          <Formik>
             <Form>
-              <Field
-                component='input'
-                type='text'
-                name='email'
-                placeholder='Email Address'
-              />
-              {touched.email && errors.email && <p className='error'>{errors.size}</p>}
-              <Field
-                component='input'
-                type='password'
-                name='password'
-                placeholder='Password'
-              />
-              {touched.password && errors.password && <p className='error'>{errors.password}</p>}
-              <Button
-                fluid
-                content='SIGN IN'
-                type='submit'
-              />
+              <Form.Input fluid name='email' placeholder='Email' />
+              {touched.email && errors.email && <p className='error'>{errors.email}</p>}
+              <Form.Input fluid name='password' placeholder='Password' />
+              {touched.email && errors.password && <p className='error'>{errors.password}</p>}
+              <Button fluid type='submit' content='SIGN IN' />
             </Form>
-          </Grid.Column>
+          </Formik>
           <p>Don't have an account? {signUpLink}</p>
         </Grid.Column>
       </Grid>

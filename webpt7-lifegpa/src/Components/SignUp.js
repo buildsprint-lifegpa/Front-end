@@ -159,13 +159,14 @@ const FormikSignUp = withFormik({
         .required('Password is required.')
     }),
     
-    handleSubmit(values, { setStatus }) {
+    handleSubmit(values, { setStatus,resetForm }) {
         axios
-          // values is our object with all our data on it.
+       
           .post("https://reqres.in/api/users/", values)
           .then(res => {
             console.log(values)
-            setStatus(res.data);
+            setStatus(res.data)
+            resetForm()
           })
           .catch(err => console.log(err.response));
       }

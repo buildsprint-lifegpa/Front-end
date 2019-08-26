@@ -38,6 +38,16 @@ const SignInContainer = styled.section`
     }
 `;
 
+const btnStyle = {
+  backgroundColor: "#6A9790",
+  border: '1px solid #6A9790'
+}
+
+const activeStyle = {
+  backgroundColor: '#eeeeee',
+  color: '#777777'
+}
+
 
 
 const LogIn = ({ errors, touched, values, status }) => {
@@ -79,6 +89,7 @@ const LogIn = ({ errors, touched, values, status }) => {
               <Button
                 fluid
                 primary
+                style={btnStyle}
                 content='SIGN IN'
                 type='submit'
                 as={Link}

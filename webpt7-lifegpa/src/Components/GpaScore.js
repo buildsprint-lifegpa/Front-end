@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
-import { user, userHabits } from '../dummyData';
+import { userHabits } from '../dummyData';
 
 const habitList = userHabits[0].habits
 
@@ -14,7 +14,9 @@ const points = () => {
   })
   return points / count
 }
+
 let ringColor = points()
+
 const numColor = (points) => {
   return points > 85 ? 'green'
     : points > 70 ? 'yellow'

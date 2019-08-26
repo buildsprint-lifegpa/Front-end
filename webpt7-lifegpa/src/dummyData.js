@@ -5,7 +5,7 @@ export const user = [
     "fullname": "Zach Christy",
     "password": "$2a$10$W2/Y5EkuQp56SjMPp4qosewaXxaXh5T1ELFFbj99UGI9GI5q94fYK",
     "email": "zchristy44@gmail.com",
-    "userImgUrl": "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+    "userImgUrl": "//lh3.googleusercontent.com/a-/AAuE7mC-3aOby8PjOXIC1uBbvz087OIk_5BHtC0SM2-Lbw=s96-cc",
     "categories": [
       {
         "id": 1,

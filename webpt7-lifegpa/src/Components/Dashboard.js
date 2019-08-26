@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 import GpaScore from './GpaScore';
 import { PrimaryButton } from './AppButtons';
+import { user } from '../dummyData';
+import userImage from '../assets/large.png'
 
 
 const DashboardContainer = styled.section`
@@ -16,6 +18,7 @@ const DashboardContainer = styled.section`
   padding-bottom: 60px;
 
   h1 {
+    font-size: 3rem;
     text-align: center;
   }
 `;
@@ -34,11 +37,21 @@ const BottomContainer = styled.section`
   color: #777777;
 `;
 
+// const photo = user[0].userImgUrl
+// const photo = false
+
+
+console.log(user)
+
+
 const Dashboard = () => {
   return (
     <>
       <DashboardContainer>
-        <AppHeader />
+        <AppHeader
+          name={user[0].fullname}
+          userPhoto={user[0].userImgUrl || userImage}
+        />
         <h1>Hello!</h1>
         <GpaScore />
         <PrimaryButton

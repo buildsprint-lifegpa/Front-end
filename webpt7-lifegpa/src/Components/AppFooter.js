@@ -13,6 +13,10 @@ const NavFooter = styled.footer`
   width: 100%;
 `;
 
+const iconColor = {
+  color: '#777777',
+}
+
 const AppFooter = () => {
 
   return (
@@ -20,23 +24,27 @@ const AppFooter = () => {
       <Icon
         name="chart pie"
         size="big"
-        color="#777777"
+        style={iconColor}
       />
       <Icon
         name="pencil alternate"
         size="big"
+        style={iconColor}
       />
       <Icon
         name="check square"
         size="big"
+        style={iconColor}
       />
       <Icon
         name="share alternate"
         size="big"
+        style={iconColor}
       />
       <Icon
         name="content"
         size="big"
+        style={iconColor}
       />
     </NavFooter>
   )

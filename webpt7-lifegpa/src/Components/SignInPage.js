@@ -6,6 +6,8 @@ import { Form, Field, withFormik } from 'formik'
 import styled from 'styled-components'
 
 import AppHeader from './AppHeader';
+import userImage from '../assets/large.png'
+
 // import { user } from '../dummyData';
 
 const SignInContainer = styled.section`
@@ -68,7 +70,8 @@ const LogIn = ({ errors, touched, values, status }) => {
     <SignInContainer>
       <Grid className="sign-in-form">
         <Grid.Column>
-          <AppHeader />
+          <AppHeader
+            userPhoto={userImage} />
           <h1>Welcome Back!</h1>
           <Grid.Column>
             <Form>

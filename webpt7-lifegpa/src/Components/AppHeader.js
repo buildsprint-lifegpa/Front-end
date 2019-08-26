@@ -38,7 +38,7 @@ const AppHeader = (props) => {
         alt='logo'
       />
       <ImageContainer>
-        <p>{props.name || "Full Name"}</p>
+        <p>{props.name || ""}</p>
         {/* <img src={props.userPhoto} alt={props.name}></img> */}
         <UserImage
           src={props.userPhoto}

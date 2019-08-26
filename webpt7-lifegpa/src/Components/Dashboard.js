@@ -49,6 +49,7 @@ const BottomContainer = styled.section`
   bottom: 80px;
 
 `;
+console.log(userImage)
 
 
 const Dashboard = () => {

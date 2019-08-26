@@ -4,6 +4,7 @@ import React from 'react'
 export const PrimaryButton = (props) => {
 
   const btnStyle = {
+    maxWidth: props.maxWidth || '300px',
     color: props.color || '#ffffff',
     backgroundColor: props.bgColor || '#6A9790',
     border: props.border || '2px solid #6A9790',

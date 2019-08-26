@@ -9,13 +9,17 @@ import userImage from '../assets/large.png'
 
 
 const DashboardContainer = styled.section`
+  height: 80vh;
+`;
+const ScoreContainer = styled.section`
   max-width: 80%;
+  height: 55vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-items: center;
   color: #777777;
-  padding-bottom: 60px;
+  padding: 5%;
 
   h1 {
     font-size: 3rem;
@@ -26,43 +30,48 @@ const DashboardContainer = styled.section`
 const ReminderTitle = styled.h2`
         color: #777777;
         max-width: 300px;
-        margin: 0 auto;
+        margin-left: 10%;
+        position: fixed;
+        bottom: 180px;
 `;
 
 const BottomContainer = styled.section`
+  width: 100%;
   border-top: 5px solid #596B69;
   border-bottom: 5px solid #596B69;
   text-align: center;
-  padding: 30px;
-  color: #777777;
+  padding: 16px;
+  color: #D3D3D3;
+  display: flex;
+  flex-direction: column;
+  justify-content:space-evenly;
+  position: fixed;
+  bottom: 80px;
+
 `;
-
-// const photo = user[0].userImgUrl
-// const photo = false
-
-
-console.log(user)
 
 
 const Dashboard = () => {
   return (
     <>
-      <DashboardContainer>
-        <AppHeader
-          name={user[0].fullname}
-          userPhoto={user[0].userImgUrl || userImage}
-        />
-        <h1>Hello!</h1>
-        <GpaScore />
-        <PrimaryButton
-          text='Get Started'
-        />
+      <AppHeader
+        name={user[0].fullname}
+        userPhoto={user[0].userImgUrl || userImage}
+      />
+      <DashboardContainer className="here-i-am">
+        <ScoreContainer>
+          <h1> Hello!</h1>
+          <GpaScore />
+          <PrimaryButton
+            text='Get Started!'
+          />
+        </ScoreContainer>
+        <ReminderTitle>Reminder</ReminderTitle>
+        <BottomContainer>
+          <h2>Want to stay on track?</h2>
+          <p>Click the clock to set a reminder</p>
+        </BottomContainer>
       </DashboardContainer>
-      <ReminderTitle>Reminder</ReminderTitle>
-      <BottomContainer>
-        <h2>Want to stay on track?</h2>
-        <p>Click the clock to set a reminder</p>
-      </BottomContainer>
     </>
   )
 }

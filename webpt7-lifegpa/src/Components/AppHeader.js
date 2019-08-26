@@ -7,11 +7,17 @@ import userPhoto from '../assets/large.png'
 
 
 const Header = styled.header`
-  width: 100%;
-  height: 60px;
+  width: 80%;
+  height: 10vh;
   display: flex;
   justify-content: space-between;
-  margin-top: 10%;
+  margin: 0 auto;
+  padding-top: 20px;
+`;
+
+const HeaderLogo = styled.img`
+  width: 60px;
+  height: 60px;
 `;
 
 const ImageContainer = styled.aside`
@@ -27,7 +33,10 @@ const AppHeader = (props) => {
 
   return (
     <Header>
-      <img src={logo} alt='logo'></img>
+      <HeaderLogo
+        src={logo}
+        alt='logo'
+      />
       <ImageContainer>
         <p>{props.name || "Full Name"}</p>
         {/* <img src={props.userPhoto} alt={props.name}></img> */}

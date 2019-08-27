@@ -13,6 +13,7 @@ const Header = styled.header`
   justify-content: space-between;
   margin: 0 auto;
   padding-top: 20px;
+  color: #777777;
 `;
 
 const HeaderLogo = styled.img`
@@ -39,7 +40,6 @@ const AppHeader = (props) => {
       />
       <ImageContainer>
         <p>{props.name || ""}</p>
-        {/* <img src={props.userPhoto} alt={props.name}></img> */}
         <UserImage
           src={props.userPhoto}
           alt={props.name}

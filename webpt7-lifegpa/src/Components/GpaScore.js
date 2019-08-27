@@ -27,11 +27,8 @@ const numColor = (points) => {
 const scoreColor = {
   borderColor: numColor(ringColor)
 }
-console.log(points(), scoreColor)
-
 
 const GpaScore = () => {
-
 
   const ScoreRing = styled.section`
     display: flex;
@@ -45,6 +42,7 @@ const GpaScore = () => {
     .score {
       font-size: 5rem;
       margin: 0 auto;
+      padding-top: 15px;
     }
     .score-text {
       text-align: center;

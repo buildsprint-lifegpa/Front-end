@@ -41,15 +41,10 @@ const SignInContainer = styled.section`
 `;
 
 const btnStyle = {
-  backgroundColor: "#6A9790",
-  border: '1px solid #6A9790'
+  backgroundColor: "#596B69",
+  border: '1px solid #596B69',
+  color: '#ffffff'
 }
-
-const activeStyle = {
-  backgroundColor: '#eeeeee',
-  color: '#777777'
-}
-
 
 
 const LogIn = ({ errors, touched, values, status }) => {
@@ -67,45 +62,46 @@ const LogIn = ({ errors, touched, values, status }) => {
 
 
   return (
-    <SignInContainer>
-      <Grid className="sign-in-form">
-        <Grid.Column>
-          <AppHeader
-            userPhoto={userImage} />
-          <h1>Welcome Back!</h1>
+    <>
+      <AppHeader
+        userPhoto={userImage} />
+      <SignInContainer>
+        <Grid className="sign-in-form">
           <Grid.Column>
-            <Form>
-              <Field
-                component='input'
-                type='text'
-                name='email'
-                placeholder='Email Address'
-              />
-              {touched.email && errors.email && <p className='error'>{errors.size}</p>}
-              <Field
-                component='input'
-                type='password'
-                name='password'
-                placeholder='Password'
-              />
-              {touched.password && errors.password && <p className='error'>{errors.password}</p>}
-              <Button
-                fluid
-                primary
-                style={btnStyle}
-                content='SIGN IN'
-                type='submit'
-                as={Link}
-                to="/Dashboard"
-                color='vk'
-              />
-            </Form>
+            <h1>Welcome Back!</h1>
+            <Grid.Column>
+              <Form>
+                <Field
+                  component='input'
+                  type='text'
+                  name='email'
+                  placeholder='Email Address'
+                />
+                {touched.email && errors.email && <p className='error'>{errors.size}</p>}
+                <Field
+                  component='input'
+                  type='password'
+                  name='password'
+                  placeholder='Password'
+                />
+                {touched.password && errors.password && <p className='error'>{errors.password}</p>}
+                <Button
+                  fluid
+                  primary
+                  style={btnStyle}
+                  content='SIGN IN'
+                  type='submit'
+                  as={Link}
+                  to="/Dashboard"
+                  color='vk'
+                />
+              </Form>
+            </Grid.Column>
+            <p>Don't have an account? {signUpLink}</p>
           </Grid.Column>
-          <p>Don't have an account? {signUpLink}</p>
-        </Grid.Column>
-      </Grid>
-    </SignInContainer>
-
+        </Grid>
+      </SignInContainer>
+    </>
   )
 }
 

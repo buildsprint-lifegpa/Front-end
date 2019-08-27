@@ -49,10 +49,7 @@ const BottomContainer = styled.section`
   justify-content:space-evenly;
   position: fixed;
   bottom: 80px;
-
 `;
-console.log(userImage)
-
 
 const Dashboard = () => {
   return (
@@ -63,11 +60,10 @@ const Dashboard = () => {
       />
       <DashboardContainer className="here-i-am">
         <ScoreContainer>
-          <h1> Welcome Back!</h1>
+          <h1> Hi!</h1>
           <GpaScore />
           <PrimaryButton
-            text='Get Started!'
-
+            text='View Habits'
           />
         </ScoreContainer>
         <ReminderTitle><Icon name='clock outline' />Reminder</ReminderTitle>

@@ -43,7 +43,7 @@ const GpaScore = () => {
     margin: 0 auto;
 
     .score {
-      font-size: 6rem;
+      font-size: 5rem;
       margin: 0 auto;
     }
     .score-text {

@@ -1,11 +1,13 @@
 import React from 'react'
 import AppHeader from './AppHeader';
 import styled from 'styled-components';
+import { Icon } from 'semantic-ui-react';
 
 import GpaScore from './GpaScore';
 import { PrimaryButton } from './AppButtons';
 import { user } from '../dummyData';
 import userImage from '../assets/large.png'
+
 
 
 const DashboardContainer = styled.section`
@@ -18,6 +20,7 @@ const ScoreContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-items: center;
+  align-items: center;
   color: #777777;
   padding: 5%;
 
@@ -65,9 +68,10 @@ const Dashboard = () => {
           <GpaScore />
           <PrimaryButton
             text='Get Started!'
+
           />
         </ScoreContainer>
-        <ReminderTitle>Reminder</ReminderTitle>
+        <ReminderTitle><Icon name='clock outline' />Reminder</ReminderTitle>
         <BottomContainer>
           <h2>Want to stay on track?</h2>
           <p>Click the clock to set a reminder</p>

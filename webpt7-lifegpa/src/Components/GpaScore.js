@@ -12,7 +12,7 @@ const points = () => {
     points += habit.completionPoints
     count++
   })
-  return points / count
+  return Math.floor(points / count)
 }
 
 let ringColor = points()
@@ -27,11 +27,8 @@ const numColor = (points) => {
 const scoreColor = {
   borderColor: numColor(ringColor)
 }
-console.log(points(), scoreColor)
-
 
 const GpaScore = () => {
-
 
   const ScoreRing = styled.section`
     display: flex;
@@ -43,8 +40,9 @@ const GpaScore = () => {
     margin: 0 auto;
 
     .score {
-      font-size: 6rem;
+      font-size: 5rem;
       margin: 0 auto;
+      padding-top: 15px;
     }
     .score-text {
       text-align: center;

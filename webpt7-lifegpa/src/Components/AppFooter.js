@@ -4,13 +4,15 @@ import { Icon } from 'semantic-ui-react';
 
 const NavFooter = styled.footer`
   width: 100%;
-  height: 60px;
+  height: 80px;
   display: flex;
   justify-content: space-evenly;
-  align-content: center;
+  align-items: center;
   position: fixed;
   bottom: 0;
   width: 100%;
+  border-top: 5px solid #596B69;
+
 `;
 
 const iconColor = {

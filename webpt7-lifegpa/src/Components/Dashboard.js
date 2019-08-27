@@ -1,11 +1,13 @@
 import React from 'react'
 import AppHeader from './AppHeader';
 import styled from 'styled-components';
+import { Icon } from 'semantic-ui-react';
 
 import GpaScore from './GpaScore';
 import { PrimaryButton } from './AppButtons';
 import { user } from '../dummyData';
 import userImage from '../assets/large.png'
+
 
 
 const DashboardContainer = styled.section`
@@ -18,6 +20,7 @@ const ScoreContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-items: center;
+  align-items: center;
   color: #777777;
   padding: 5%;
 
@@ -38,7 +41,6 @@ const ReminderTitle = styled.h2`
 const BottomContainer = styled.section`
   width: 100%;
   border-top: 5px solid #596B69;
-  border-bottom: 5px solid #596B69;
   text-align: center;
   padding: 16px;
   color: #D3D3D3;
@@ -47,10 +49,7 @@ const BottomContainer = styled.section`
   justify-content:space-evenly;
   position: fixed;
   bottom: 80px;
-
 `;
-console.log(userImage)
-
 
 const Dashboard = () => {
   return (
@@ -61,13 +60,13 @@ const Dashboard = () => {
       />
       <DashboardContainer className="here-i-am">
         <ScoreContainer>
-          <h1> Hello!</h1>
+          <h1> Hi!</h1>
           <GpaScore />
           <PrimaryButton
-            text='Get Started!'
+            text='View Habits'
           />
         </ScoreContainer>
-        <ReminderTitle>Reminder</ReminderTitle>
+        <ReminderTitle><Icon name='clock outline' />Reminder</ReminderTitle>
         <BottomContainer>
           <h2>Want to stay on track?</h2>
           <p>Click the clock to set a reminder</p>

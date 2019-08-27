@@ -12,7 +12,7 @@ const points = () => {
     points += habit.completionPoints
     count++
   })
-  return points / count
+  return Math.floor(points / count)
 }
 
 let ringColor = points()

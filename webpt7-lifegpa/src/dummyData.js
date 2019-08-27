@@ -42,7 +42,7 @@ export const userHabits = [
         "id": 1,
         "habitTitle": "Workout",
         "completed": 0,
-        "completionPoints": 70,
+        "completionPoints": 90,
         "userId": 1,
         "categoryId": 1,
         "createdAt": "2019-06-24 21:53:29",

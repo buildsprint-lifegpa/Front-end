@@ -41,7 +41,6 @@ const ReminderTitle = styled.h2`
 const BottomContainer = styled.section`
   width: 100%;
   border-top: 5px solid #596B69;
-  border-bottom: 5px solid #596B69;
   text-align: center;
   padding: 16px;
   color: #D3D3D3;
@@ -64,7 +63,7 @@ const Dashboard = () => {
       />
       <DashboardContainer className="here-i-am">
         <ScoreContainer>
-          <h1> Hello!</h1>
+          <h1> Welcome Back!</h1>
           <GpaScore />
           <PrimaryButton
             text='Get Started!'

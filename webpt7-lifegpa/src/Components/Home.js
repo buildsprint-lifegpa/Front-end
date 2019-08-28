@@ -42,7 +42,6 @@ const Home = () => {
       <Button
         content='SIGN IN'
         as={Link}
-        exact
         to='/sign-in'
       />
       <p>Want to learn more about LifeGPA?</p>

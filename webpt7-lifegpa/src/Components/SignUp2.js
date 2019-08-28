@@ -67,6 +67,7 @@ const btnStyle = {
 const SignUp = () => {
 
 
+
   return (
     <>
       <HeaderContainer>

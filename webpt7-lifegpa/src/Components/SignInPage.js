@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import * as Yup from 'yup'
 import { Link } from 'react-router-dom'
-import { Button, Icon, Grid } from 'semantic-ui-react'
+import { Button, Grid } from 'semantic-ui-react'
 import { Form, Field, withFormik } from 'formik'
 import styled from 'styled-components'
+import axios from 'axios'
 
 import AppHeader from './AppHeader';
 import userImage from '../assets/large.png'
@@ -47,18 +48,33 @@ const btnStyle = {
 }
 
 
-const LogIn = ({ errors, touched, values, status }) => {
+const LogIn = ({ props, errors, touched, status, history }) => {
 
-  const [user, setUser] = useState({});
+
+
   useEffect(() => {
     if (status) {
-      return setUser(status)
+
+      axios
+        .post('/api/login', status)
+        .then(res => {
+          localStorage.token = res.data.token
+          history.push('/dashboard')
+
+        })
+        .catch(err => console.log(err))
     }
   }, [status])
 
   const signUpLink = (
     <Link to='/sign-up' className='sign-up-link'>Sign Up.</Link>
   )
+
+  // const clicked = () => {
+  //   axios.get('/api/users')
+  //     .then(res => console.log(res))
+  //     .catch(err => console.log(err))
+  // }
 
 
   return (
@@ -74,10 +90,10 @@ const LogIn = ({ errors, touched, values, status }) => {
                 <Field
                   component='input'
                   type='text'
-                  name='email'
-                  placeholder='Email Address'
+                  name='username'
+                  placeholder='User Name'
                 />
-                {touched.email && errors.email && <p className='error'>{errors.size}</p>}
+                {touched.username && errors.username && <p className='error'>{errors.username}</p>}
                 <Field
                   component='input'
                   type='password'
@@ -91,9 +107,6 @@ const LogIn = ({ errors, touched, values, status }) => {
                   style={btnStyle}
                   content='SIGN IN'
                   type='submit'
-                  as={Link}
-                  to="/Dashboard"
-                  color='vk'
                 />
               </Form>
             </Grid.Column>
@@ -106,22 +119,21 @@ const LogIn = ({ errors, touched, values, status }) => {
 }
 
 const SignInPage = withFormik({
-  mapPropsToValues({ email, password }) {
+  mapPropsToValues({ username, password }) {
     // console.log(email, password)
     return {
-      email: email || "",
+      username: username || "",
       password: password || "",
     }
   },
   validationSchema: Yup.object().shape({
-    email: Yup.string().required("Cannot be an empty field"),
+    username: Yup.string().required("Cannot be an empty field"),
     password: Yup.string().required("Cannot be an empty field")
   }),
   handleSubmit(values, { setStatus, resetForm }) {
     console.log(values)
     setStatus(values)
     resetForm()
-    localStorage.setItem('token', values.email)
   }
 })(LogIn)
 

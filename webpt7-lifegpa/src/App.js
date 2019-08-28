@@ -3,12 +3,12 @@ import './App.css';
 import { Route } from 'react-router-dom'
 import SignInPage from './Components/SignInPage';
 import Home from './Components/Home';
-// import FormikSignUp from './Components/SignUp';
+import FormikSignUp from './Components/SignUp';
 import PrivateRoute from './Components/PrivateRoute';
 import Dashboard from './Components/Dashboard';
 import AppFooter from './Components/AppFooter';
 import ChooseHabit from './Components/HabitSelect';
-import SignUp from './Components/SignUp2';
+// import SignUp from './Components/SignUp2';
 import CreateHabitHeader from './Components/CreateHabitHeader';
 
 
@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <Route exact path='/' component={Home} />
       <Route exact path="/sign-in" component={SignInPage} />
-      <Route exact path='/sign-up' component={SignUp} />
+      <Route exact path='/sign-up' component={FormikSignUp} />
       <Route path='/choose-habit' component={ChooseHabit} />
       <Route path='/habit-header' component={CreateHabitHeader} />
       <PrivateRoute path="/dashboard" component={Dashboard} />

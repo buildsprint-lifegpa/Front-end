@@ -1,156 +1,171 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import * as Yup from 'yup'
-import { Link } from 'react-router-dom'
-import { Button, Icon, Grid } from 'semantic-ui-react'
-import { withFormik, Form, Field } from 'formik';
+import { Button, Icon } from 'semantic-ui-react'
+import { withFormik, Form, Field, ErrorMessage } from 'formik';
+import logo from '../assets/logomark-white.png'
 import styled from 'styled-components';
 
-const Wrapper = styled.section`
-max-width:100%;
-h2{
-    margin-bottom:25px;
-    text-align:center;
-}
-i{
-    width:400px;
-    margin-left:5px;
-    align-self:center;
-}
-.form{
-    display:flex;
-    flex-direction: column;
-}
-.errors{
-    margin:10px 0;
-    color:white;
-    background-color:red;
-    padding:5px;
 
-}
-.button{
 
-    width:150px;
-    align-self:center;
-    background-color: red;
-    padding:20px;
-}
-p{
-   font-size:1.25rem;
-    vertical-align:middle;
-    text-align:center;
-
-}
+const HeaderContainer = styled.section`
+width: 100%;
+background-color: #596B69;
+color: #ffffff;
 `;
 
 const SignUpHeader = styled.header`
-display:flex;
-flex-direction: column;
-align-items:center;
-margin: 10px auto;
+width: 100%;
+max-width: 700px;
+padding: 12px;
+margin: 0 auto;  
 
-`;
+.title-header-container {
+display: flex;
+justify-content: space-between;
+align-items: center;    
 
-const Inputs = styled.section`
-display:flex;
-flex-direction:column;
-align-items:center;
-width:100%;
-.field{
-   
-   width:200px;
-   border-radius:10px;
-   text-align:center;
+h2 {
+font-size: 1.8rem;
+font-weight: 1000;
+margin: 0;
 }
 
+h3 {
+font-size: 1.2rem;
+margin: 0;
+}
+
+.badge {
+width: 60px;
+}
+}
 `;
 
-function NewUser({ errors, touched }) {
+const FormContainer = styled.section`
+/* border: 1px solid black; */
+margin: 15%;
+color: #596B69;
+`;
 
+const SubmitContainer = styled.section`
+width: 100%;
+display: flex;
+justify-content:space-between;
+padding: 10px;
+flex-wrap: wrap;
+
+p {
+font-size: 0.5rem;
+}
+`;
+
+const btnStyle = {
+    backgroundColor: "#596B69",
+    border: '1px solid #596B69',
+    color: '#ffffff'
+}
+
+function NewUser({ status, touched, history, values }) {
+    useEffect(() => {
+        if (status) {
+            axios
+                .post('/api/register', values)
+                .then(
+                    history.replace('/sign-in')
+                )
+                .catch(err => {
+                    console.log(err);
+                });
+        }
+    }, [status])
     const signIn = (
         <a href='/sign-in'>Sign In.</a>
     )
     console.log("Input is being read", touched);
-
     return (
-        <Wrapper>
-            <Grid className='sign-up-form'>
+        <>
+            <HeaderContainer>
+                <SignUpHeader>
+                    <img src={logo} alt="logo"></img>
+                    <div className='title-header-container'>
+                        <div className='title-container'>
+                            <h2>Welcome to a new you!</h2>
+                            <h3>Get ready to level up your life.</h3>
+                        </div>
+                        <img className='badge' src="https://trello-attachments.s3.amazonaws.com/5d5c8362c4dc8659339f2bab/5d5f3da3caa0995590c4f955/c1cf71a7e3b4917cd2a82f4313437a19/badge-white.png" alt='badge'></img>
+                    </div>
 
-                <Grid.Column>
+                </SignUpHeader>
+            </HeaderContainer>
 
-                    <SignUpHeader>
+            <FormContainer>
+                <Form className='form'>
 
-                        <Icon
-                            name='user circle outline'
-                            size='big'
-                        />
-                        <h2>Welcome to a new you!</h2>
+                    <Field className='field'
+                        component='input'
+                        type='text'
+                        name='username'
+                        placeholder='User Name'
+                    />
+                    <br /> <br />
+                    <ErrorMessage name='username' />
+                    <br /> <br />
+                    <Field className='field'
+                        component='input'
+                        type='text'
+                        name='fullname'
+                        placeholder='Full Name'
+                    />
+                    <br /> <br />
+                    <ErrorMessage name='fullname' />
+                    <br /> <br />
+                    <Field className='field'
+                        component='input'
+                        type='email'
+                        name='email'
+                        placeholder='Email Address'
+                    />
+                    <br /> <br />
+                    <ErrorMessage name='email' />
+                    <br /> <br />
+                    <Field className='field'
+                        component='input'
+                        type='password'
+                        name='password'
+                        placeholder='Password'
+                    />
+                    <br /> <br />
+                    <ErrorMessage name='password' />
+                    <br /> <br />
 
-                    </SignUpHeader>
-
-                    <Form className='form'>
-                        <Inputs>
-                            <Field className='field'
-                                component='input'
-                                type='text'
-                                name='name'
-                                placeholder='Full Name'
-                            />
-                            {touched.name && errors.name && (<p className='errors'>
-                                {errors.name}</p>)}
-                            <br /> <br />
-
-
-                            <Field className='field'
-                                component='input'
-                                type='text'
-                                name='email'
-                                placeholder='Email Address'
-                            />
-                            {touched.email && errors.email && (<p className='errors'>
-                                {errors.email}</p>)}
-                            <br /> <br />
-
-
-                            <Field className='field'
-                                component='input'
-                                type='password'
-                                name='password'
-                                placeholder='Password'
-                            />
-                            {touched.password && errors.password && (<p className='errors'>
-                                {errors.password}</p>)}
-
-                            <br /> <br />
-                        </Inputs>
+                    <SubmitContainer>
+                        <p>Already have an account? {signIn}</p>
                         <Button
                             type='submit'
-                            content='Sign Up'
-                            as={Link}
-                            to='/choose-habit'
-                        />
+                            float='right'
+                            style={btnStyle}>Sign Up</Button>
                         <br /> <br />
-
-                        <p>Already have an account? {signIn}</p>
-
-                    </Form>
-
-                </Grid.Column>
-            </Grid>
-        </Wrapper>
+                    </SubmitContainer>
+                </Form>
+            </FormContainer>
+        </>
     );
 }
 const FormikSignUp = withFormik({
-    mapPropsToValues({ name, password, email }) {
+    mapPropsToValues({ username, fullname, password, email }) {
         return {
-            name: name || '',
+            username: username || '',
+            fullname: fullname || '',
             password: password || '',
             email: email || ''
         };
     },
 
     validationSchema: Yup.object().shape({
-        name: Yup.string()
+        username: Yup.string()
+            .required('Please enter a username.'),
+        fullname: Yup.string()
             .required('Please enter your full name.'),
         email: Yup.string()
             .required('Please enter your email address.'),
@@ -160,17 +175,10 @@ const FormikSignUp = withFormik({
     }),
 
     handleSubmit(values, { setStatus, resetForm }) {
-        axios
-
-            .post("https://reqres.in/api/users/", values)
-            .then(res => {
-                console.log(values)
-                setStatus(res.data)
-                resetForm()
-            })
-            .catch(err => console.log(err.response));
+        console.log('This is the data:', values)
+        setStatus(values)
+        resetForm()
     }
-
 })(NewUser);
 
 export default FormikSignUp;

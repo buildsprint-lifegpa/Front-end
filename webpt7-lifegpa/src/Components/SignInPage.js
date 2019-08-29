@@ -58,9 +58,11 @@ const LogIn = ({ props, errors, touched, status, history }) => {
       axios
         .post('/api/login', status)
         .then(res => {
+          let id = res.data.user.id
+          localStorage.setItem('id', res.data.user.id)
+          console.log('singup 63', res.data.user)
           localStorage.token = res.data.token
-          history.push('/dashboard')
-
+          history.push(`/dashboard/${id}`)
         })
         .catch(err => console.log(err))
     }
@@ -69,13 +71,6 @@ const LogIn = ({ props, errors, touched, status, history }) => {
   const signUpLink = (
     <Link to='/sign-up' className='sign-up-link'>Sign Up.</Link>
   )
-
-  // const clicked = () => {
-  //   axios.get('/api/users')
-  //     .then(res => console.log(res))
-  //     .catch(err => console.log(err))
-  // }
-
 
   return (
     <>
@@ -120,7 +115,6 @@ const LogIn = ({ props, errors, touched, status, history }) => {
 
 const SignInPage = withFormik({
   mapPropsToValues({ username, password }) {
-    // console.log(email, password)
     return {
       username: username || "",
       password: password || "",
@@ -131,7 +125,7 @@ const SignInPage = withFormik({
     password: Yup.string().required("Cannot be an empty field")
   }),
   handleSubmit(values, { setStatus, resetForm }) {
-    console.log(values)
+    console.log('signup 128', values)
     setStatus(values)
     resetForm()
   }

@@ -8,10 +8,11 @@ const NavFooter = styled.footer`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
-  border-top: 5px solid #596B69;
+  background-color: #ffffff;
+  /* border-top: 5px solid #596B69; */
 
 `;
 

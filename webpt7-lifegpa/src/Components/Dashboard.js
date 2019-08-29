@@ -1,28 +1,29 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import AppHeader from './AppHeader';
 import styled from 'styled-components';
-import { Icon } from 'semantic-ui-react';
+import axios from 'axios'
 
 import GpaScore from './GpaScore';
 import { PrimaryButton } from './AppButtons';
-import { user } from '../dummyData';
 import userImage from '../assets/large.png'
+import DashHabit from './DashHabit';
+import AppFooter from './AppFooter';
 
 
 
 const DashboardContainer = styled.section`
-  height: 80vh;
+  
 `;
 const ScoreContainer = styled.section`
   max-width: 80%;
-  height: 55vh;
+  /* height: 55vh; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-items: center;
   align-items: center;
   color: #777777;
-  padding: 5%;
+  padding-bottom: 10%;
 
   h1 {
     font-size: 3rem;
@@ -30,48 +31,92 @@ const ScoreContainer = styled.section`
   }
 `;
 
-const ReminderTitle = styled.h2`
+const HabitTitle = styled.h2`
         color: #777777;
-        max-width: 300px;
-        margin-left: 10%;
-        position: fixed;
-        bottom: 180px;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        border-bottom: 4px solid #596B69;
+        padding: 2%;
+
 `;
 
-const BottomContainer = styled.section`
+const HabitContainer = styled.section`
   width: 100%;
-  border-top: 5px solid #596B69;
-  text-align: center;
-  padding: 16px;
-  color: #D3D3D3;
   display: flex;
   flex-direction: column;
-  justify-content:space-evenly;
-  position: fixed;
-  bottom: 80px;
+  justify-items: center;
+  color: #D3D3D3;
+  border-bottom: 4px solid #596B69;
+  margin: 0 auto;
+
+  .habit-list {
+    text-align: left;
+    margin: 0 auto;
+    padding: 20px;
+  }
 `;
 
 const Dashboard = () => {
+
+  const id = localStorage.id
+  const [user, setUser] = useState();
+
+
+  useEffect(() => {
+    axios
+      .get(`api/users/habits/${id}`)
+      .then(res => {
+        setUser(res.data)
+      })
+  }, []);
+
+
+
+  if (!user)
+    return <div>Loading...</div>
+
+  console.log(user.habits)
+  const listHabits = user.habits.map(habit => {
+
+    return (
+      <DashHabit
+        key={habit.id}
+        habit={habit.habitTitle} />
+    )
+  })
+
+
   return (
     <>
       <AppHeader
-        name={user[0].fullname}
-        userPhoto={user[0].userImgUrl || userImage}
+        name={user.fullname}
+        userPhoto={user.userImgUrl || userImage}
       />
       <DashboardContainer className="here-i-am">
         <ScoreContainer>
-          <h1> Hi!</h1>
-          <GpaScore />
+          <h1>Hi {user.username}!</h1>
+          <GpaScore
+            habits={user.habits} />
           <PrimaryButton
             text='View Habits'
           />
         </ScoreContainer>
-        <ReminderTitle><Icon name='clock outline' />Reminder</ReminderTitle>
-        <BottomContainer>
-          <h2>Want to stay on track?</h2>
-          <p>Click the clock to set a reminder</p>
-        </BottomContainer>
       </DashboardContainer>
+      <HabitTitle>What did you do today?</HabitTitle>
+      <HabitContainer>
+        <div className="habit-list">
+          {listHabits}
+        </div>
+        <PrimaryButton
+          text="Submit Accomplishments"
+          fontSize="0.8rem"
+          width="200px"
+          margin="0 auto 20px auto"
+        />
+
+      </HabitContainer>
+      <AppFooter />
     </>
   )
 }

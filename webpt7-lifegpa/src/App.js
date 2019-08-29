@@ -22,7 +22,7 @@ function App() {
       <Route path='/choose-habit' component={ChooseHabit} />
       <Route path='/habit-header' component={CreateHabitHeader} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
-      <PrivateRoute path="/dashboard" component={AppFooter} />
+      {/* <PrivateRoute path="/dashboard" component={AppFooter} /> */}
     </div>
   );
 }

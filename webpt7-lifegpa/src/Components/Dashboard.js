@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AppHeader from './AppHeader';
 import styled from 'styled-components';
-import { Icon } from 'semantic-ui-react';
 import axios from 'axios'
 
 import GpaScore from './GpaScore';
@@ -48,8 +47,6 @@ const HabitContainer = styled.section`
   flex-direction: column;
   justify-items: center;
   color: #D3D3D3;
-  display: flex;
-  flex-direction: column;
   border-bottom: 4px solid #596B69;
   margin: 0 auto;
 
@@ -57,10 +54,6 @@ const HabitContainer = styled.section`
     text-align: left;
     margin: 0 auto;
     padding: 20px;
-  }
-
-  .submit-btn {
-    /* margin: 0 auto; */
   }
 `;
 
@@ -87,7 +80,9 @@ const Dashboard = () => {
   const listHabits = user.habits.map(habit => {
 
     return (
-      <DashHabit habit={habit.habitTitle} />
+      <DashHabit
+        key={habit.id}
+        habit={habit.habitTitle} />
     )
   })
 
@@ -101,7 +96,8 @@ const Dashboard = () => {
       <DashboardContainer className="here-i-am">
         <ScoreContainer>
           <h1>Hi {user.username}!</h1>
-          <GpaScore />
+          <GpaScore
+            habits={user.habits} />
           <PrimaryButton
             text='View Habits'
           />
@@ -113,9 +109,10 @@ const Dashboard = () => {
           {listHabits}
         </div>
         <PrimaryButton
-          className="submit-btn"
           text="Submit Accomplishments"
-          fontSize="1rem"
+          fontSize="0.8rem"
+          width="200px"
+          margin="0 auto 20px auto"
         />
 
       </HabitContainer>

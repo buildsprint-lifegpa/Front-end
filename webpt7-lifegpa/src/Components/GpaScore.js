@@ -1,53 +1,58 @@
 import React from 'react'
 import styled from 'styled-components';
 
-import { userHabits } from '../dummyData';
 
-const habitList = userHabits[0].habits
+const ScoreRing = styled.section`
+display: flex;
+flex-direction: column;
+width: 180px;
+height: 180px;
+border: 10px solid grey;
+border-radius: 50%;
+margin: 0 auto;
 
-const points = () => {
-  let points = 0
-  let count = 0
-  habitList.map(habit => {
-    points += habit.completionPoints
-    count++
-  })
-  return Math.floor(points / count)
+.score {
+  font-size: 5rem;
+  margin: 0 auto;
+  padding-top: 15px;
 }
-
-let ringColor = points()
-
-const numColor = (points) => {
-  return points > 85 ? 'green'
-    : points > 70 ? 'yellow'
-      : 'red'
+.score-text {
+  text-align: center;
 }
+`;
 
 
-const scoreColor = {
-  borderColor: numColor(ringColor)
-}
+const GpaScore = (props) => {
 
-const GpaScore = () => {
+  const habitList = props.habits
 
-  const ScoreRing = styled.section`
-    display: flex;
-    flex-direction: column;
-    width: 180px;
-    height: 180px;
-    border: 10px solid grey;
-    border-radius: 50%;
-    margin: 0 auto;
+  const points = () => {
+    let points = 0
+    let count = 0
+    habitList.map(habit => {
+      habit.history.split('').map(day => {
+        count++
+        if (day === 'x') {
+          points++
+        }
+      })
+    })
+    console.log('gpascore 42', points, count)
+    return ((points / count) * 100)
+  }
 
-    .score {
-      font-size: 5rem;
-      margin: 0 auto;
-      padding-top: 15px;
-    }
-    .score-text {
-      text-align: center;
-    }
-  `;
+  console.log('gpascore 46', points())
+
+  const numColor = (points) => {
+    return points > 85 ? 'green'
+      : points > 69 ? 'yellow'
+        : 'red'
+  }
+
+  const scoreColor = {
+    borderColor: numColor(points())
+  }
+
 
   return (
     <ScoreRing style={scoreColor}>

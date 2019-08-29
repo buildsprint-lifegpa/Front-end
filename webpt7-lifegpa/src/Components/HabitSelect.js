@@ -1,9 +1,13 @@
 import React, {useState} from 'react';
-import { Button, Icon, Grid,Form,Tab } from 'semantic-ui-react'
+import { Button, Icon, Grid,Form,Tab,Input } from 'semantic-ui-react'
 // import {Form,Field} from 'formik';
 import { PrimaryButton } from './AppButtons';
 import styled from 'styled-components';
 import AppHeader from './AppHeader';
+import CareerHabits from './Habits/CareerHabits'
+import PersonalHabits from './Habits/PersonalHabits'
+import HealthHabits from './Habits/HealthHabit'
+import MoneyHabits from './Habits/MoneyHabits'
 
 const FormHeader = styled.header`
 display:flex;
@@ -27,24 +31,47 @@ const Header = styled.header`
   padding-top: 20px; */
 `;
 
-// const panes = [
-//     {
-//       menuItem: 'Personal',
-//       render: () => <Tab.Pane attached={false}>Tab 1 Content</Tab.Pane>,
-//     },
-//     {
-//       menuItem: 'Health',
-//       render: () => <Tab.Pane attached={false}>Tab 2 Content</Tab.Pane>,
-//     },
-//     {
-//       menuItem: 'Career',
-//       render: () => <Tab.Pane attached={false}>Tab 3 Content</Tab.Pane>,
-//     },
-//     {
-//         menuItem: 'Money',
-//         render: () => <Tab.Pane attached={false}>Tab 4 Content</Tab.Pane>,
-//       }
-//   ]
+const btnStyle = {
+  backgroundColor: "#596B69",
+  border: '1px solid #596B69',
+  color: '#ffffff'
+}
+
+const panes = [
+    {
+      menuItem: 'Personal',
+      render: () => 
+      <Tab.Pane attached={false}>
+        <PersonalHabits/>
+      </Tab.Pane>,
+    },
+    {
+      menuItem: 'Health',
+      render: () => 
+      <Tab.Pane attached={false}>
+        <HealthHabits/>
+      </Tab.Pane>,
+    },
+    {
+      menuItem: 'Career',
+      render: () => 
+      <Tab.Pane attached={false}>
+        <CareerHabits/>
+      </Tab.Pane>,
+    },
+    {
+        menuItem: 'Money',
+        render: () => 
+        <Tab.Pane attached={false}>
+          <MoneyHabits/>          
+        </Tab.Pane>,
+      }
+  ]
+
+const handleClick =  () => {
+
+  }
+
 function ChooseHabit(){
 
 //   const [inputValue, setInputValue] = useState("");
@@ -76,13 +103,20 @@ function ChooseHabit(){
     //         <Tab menu={{attached:false,tabular:false}} panes={panes} />    
     //     </Form>
     //     </Header> 
-
+    <>
     <FormHeader>
     <AppHeader/>
     <h3>Let's get down to it!</h3>
     <p>Create a habit.</p>
     </FormHeader>
-  
+    <Tab menu={{borderless: true, attached:false,tabular:false}}
+    panes={panes}
+    />
+    <br></br>
+    
+    <Button content='Create Habit' onClick={handleClick}/>
+    <Input action='Submit' type='text' />
+    </>
     )
 }
 

@@ -10,6 +10,7 @@ import AppFooter from './Components/AppFooter';
 import ChooseHabit from './Components/HabitSelect';
 // import SignUp from './Components/SignUp2';
 import CreateHabitHeader from './Components/CreateHabitHeader';
+import UserHabits from './Components/UserHabits';
 
 
 // protected comopnents will be used with PrivateRoute. You can look at what the code is doing later.
@@ -21,8 +22,8 @@ function App() {
       <Route exact path='/sign-up' component={FormikSignUp} />
       <Route path='/choose-habit' component={ChooseHabit} />
       <Route path='/habit-header' component={CreateHabitHeader} />
-      <PrivateRoute path="/dashboard" component={Dashboard} />
-      {/* <PrivateRoute path="/dashboard" component={AppFooter} /> */}
+      <PrivateRoute exact path="/dashboard/:id" component={Dashboard} />
+      <PrivateRoute exact path="/dashboard/:id/user-habits" component={UserHabits} />
     </div>
   );
 }

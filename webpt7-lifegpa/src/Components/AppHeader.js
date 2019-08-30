@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Icon } from 'semantic-ui-react'
 
 import logo from '../assets/logomark - full color.png'
-import userPhoto from '../assets/large.png'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const Header = styled.header`
@@ -34,10 +33,12 @@ const AppHeader = (props) => {
 
   return (
     <Header>
-      <HeaderLogo
-        src={logo}
-        alt='logo'
-      />
+      <Link to='/'>
+        <HeaderLogo
+          src={logo}
+          alt='logo'
+        />
+      </Link>
       <ImageContainer>
         <p>{props.name || ""}</p>
         <UserImage

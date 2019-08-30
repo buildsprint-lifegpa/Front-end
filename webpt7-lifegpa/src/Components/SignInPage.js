@@ -48,7 +48,7 @@ const btnStyle = {
 }
 
 
-const LogIn = ({ props, errors, touched, status, history }) => {
+const LogIn = ({ errors, touched, status, history }) => {
 
 
 
@@ -60,7 +60,6 @@ const LogIn = ({ props, errors, touched, status, history }) => {
         .then(res => {
           let id = res.data.user.id
           localStorage.setItem('id', res.data.user.id)
-          console.log('singup 63', res.data.user)
           localStorage.token = res.data.token
           history.push(`/dashboard/${id}`)
         })
@@ -125,7 +124,6 @@ const SignInPage = withFormik({
     password: Yup.string().required("Cannot be an empty field")
   }),
   handleSubmit(values, { setStatus, resetForm }) {
-    console.log('signup 128', values)
     setStatus(values)
     resetForm()
   }

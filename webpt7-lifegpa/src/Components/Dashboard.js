@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import AppHeader from './AppHeader';
 import styled from 'styled-components';
 import axios from 'axios'
+import { Form } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import GpaScore from './GpaScore';
 import { PrimaryButton } from './AppButtons';
 import userImage from '../assets/large.png'
 import DashHabit from './DashHabit';
 import AppFooter from './AppFooter';
+
 
 
 
@@ -23,7 +26,7 @@ const ScoreContainer = styled.section`
   justify-items: center;
   align-items: center;
   color: #777777;
-  padding-bottom: 10%;
+  padding-bottom: 20%;
 
   h1 {
     font-size: 3rem;
@@ -57,11 +60,10 @@ const HabitContainer = styled.section`
   }
 `;
 
-const Dashboard = () => {
+const Dashboard = (props) => {
 
   const id = localStorage.id
   const [user, setUser] = useState();
-
 
   useEffect(() => {
     axios
@@ -71,18 +73,30 @@ const Dashboard = () => {
       })
   }, []);
 
+  const updateHabitsHandler = (e, { value }) => {
+    console.log('update')
+  }
+
+
 
 
   if (!user)
     return <div>Loading...</div>
 
-  console.log(user.habits)
+  // const [, set] = useState();
+
+
   const listHabits = user.habits.map(habit => {
 
     return (
       <DashHabit
         key={habit.id}
-        habit={habit.habitTitle} />
+        habit={habit.habitTitle}
+        name={habit.habitTitle}
+        value='x'
+        // checked={value === 'x'}
+        onClick={console.log("Dashboard 97: checkbox")}
+      />
     )
   })
 
@@ -98,23 +112,25 @@ const Dashboard = () => {
           <h1>Hi {user.username}!</h1>
           <GpaScore
             habits={user.habits} />
-          <PrimaryButton
-            text='View Habits'
-          />
+          <Link to={`/dashboard/${user.id}/user-habits`}>
+            <PrimaryButton
+              text='View Habits'
+            />
+          </Link>
         </ScoreContainer>
       </DashboardContainer>
       <HabitTitle>What did you do today?</HabitTitle>
       <HabitContainer>
-        <div className="habit-list">
+        <Form className="habit-list">
           {listHabits}
-        </div>
+        </Form>
         <PrimaryButton
-          text="Submit Accomplishments"
-          fontSize="0.8rem"
+          text="Update"
+          fontSize="1rem"
           width="200px"
           margin="0 auto 20px auto"
+          onClick={console.log("Dashboard 131: clicked")}
         />
-
       </HabitContainer>
       <AppFooter />
     </>

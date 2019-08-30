@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card } from 'semantic-ui-react';
 import axios from 'axios'
 
-const HabitCard = () => {
+const HabitCard = (props) => {
 
   const [habits, setHabits] = useState();
   const [categories, setCategories] = useState();
@@ -32,7 +32,6 @@ const HabitCard = () => {
 
   categories.map(category => categoryObj[category.id] = category.categoryTitle)
 
-  console.log('HabitCard.js 32', habits)
 
   const habitCards = habits.map(habit => {
 
@@ -58,7 +57,7 @@ const HabitCard = () => {
     )
 
     const extra = (
-      <button>Delete Habit</button>
+      <button onClick={props.clicked}>Delete Habit</button>
     )
 
     return (

@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import AppHeader from './AppHeader';
 import styled from 'styled-components';
 import axios from 'axios'
+import { Form } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 import GpaScore from './GpaScore';
 import { PrimaryButton } from './AppButtons';
 import userImage from '../assets/large.png'
 import DashHabit from './DashHabit';
 import AppFooter from './AppFooter';
-import { Form } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+
 
 
 
@@ -25,7 +26,7 @@ const ScoreContainer = styled.section`
   justify-items: center;
   align-items: center;
   color: #777777;
-  padding-bottom: 10%;
+  padding-bottom: 20%;
 
   h1 {
     font-size: 3rem;
@@ -76,27 +77,25 @@ const Dashboard = (props) => {
     console.log('update')
   }
 
-  const viewHabitHandler = () => {
-    // props.history.push(`/${user.id}/user-habits`)
-    console.log('view habits button')
-  }
+
 
 
   if (!user)
     return <div>Loading...</div>
 
+  // const [, set] = useState();
+
 
   const listHabits = user.habits.map(habit => {
-    // console.log(habit)
 
     return (
       <DashHabit
         key={habit.id}
         habit={habit.habitTitle}
         name={habit.habitTitle}
-        // value=
-        // checked='true'
-        changed={console.log('Checkbox')}
+        value='x'
+        // checked={value === 'x'}
+        onClick={console.log("Dashboard 97: checkbox")}
       />
     )
   })
@@ -116,14 +115,13 @@ const Dashboard = (props) => {
           <Link to={`/dashboard/${user.id}/user-habits`}>
             <PrimaryButton
               text='View Habits'
-              onClick={() => viewHabitHandler}
             />
           </Link>
         </ScoreContainer>
       </DashboardContainer>
       <HabitTitle>What did you do today?</HabitTitle>
       <HabitContainer>
-        <Form>
+        <Form className="habit-list">
           {listHabits}
         </Form>
         <PrimaryButton
@@ -131,6 +129,7 @@ const Dashboard = (props) => {
           fontSize="1rem"
           width="200px"
           margin="0 auto 20px auto"
+          onClick={console.log("Dashboard 131: clicked")}
         />
       </HabitContainer>
       <AppFooter />

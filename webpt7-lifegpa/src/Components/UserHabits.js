@@ -33,7 +33,8 @@ const UserHabits = () => {
         name={user.fullname}
       />
       <h1>UserHabits</h1>
-      <HabitCard />
+      <HabitCard
+        clicked={console.log("UserHabits: HabitCard: 37, clicked")} />
       <AppFooter />
     </>
   )

@@ -8,6 +8,8 @@ import { PrimaryButton } from './AppButtons';
 import userImage from '../assets/large.png'
 import DashHabit from './DashHabit';
 import AppFooter from './AppFooter';
+import { Form } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -57,11 +59,10 @@ const HabitContainer = styled.section`
   }
 `;
 
-const Dashboard = () => {
+const Dashboard = (props) => {
 
   const id = localStorage.id
   const [user, setUser] = useState();
-
 
   useEffect(() => {
     axios
@@ -71,18 +72,32 @@ const Dashboard = () => {
       })
   }, []);
 
+  const updateHabitsHandler = (e, { value }) => {
+    console.log('update')
+  }
+
+  const viewHabitHandler = () => {
+    // props.history.push(`/${user.id}/user-habits`)
+    console.log('view habits button')
+  }
 
 
   if (!user)
     return <div>Loading...</div>
 
-  console.log(user.habits)
+
   const listHabits = user.habits.map(habit => {
+    // console.log(habit)
 
     return (
       <DashHabit
         key={habit.id}
-        habit={habit.habitTitle} />
+        habit={habit.habitTitle}
+        name={habit.habitTitle}
+        // value=
+        // checked='true'
+        changed={console.log('Checkbox')}
+      />
     )
   })
 
@@ -98,23 +113,25 @@ const Dashboard = () => {
           <h1>Hi {user.username}!</h1>
           <GpaScore
             habits={user.habits} />
-          <PrimaryButton
-            text='View Habits'
-          />
+          <Link to={`/dashboard/${user.id}/user-habits`}>
+            <PrimaryButton
+              text='View Habits'
+              onClick={() => viewHabitHandler}
+            />
+          </Link>
         </ScoreContainer>
       </DashboardContainer>
       <HabitTitle>What did you do today?</HabitTitle>
       <HabitContainer>
-        <div className="habit-list">
+        <Form>
           {listHabits}
-        </div>
+        </Form>
         <PrimaryButton
-          text="Submit Accomplishments"
-          fontSize="0.8rem"
+          text="Update"
+          fontSize="1rem"
           width="200px"
           margin="0 auto 20px auto"
         />
-
       </HabitContainer>
       <AppFooter />
     </>

@@ -37,11 +37,8 @@ const GpaScore = (props) => {
         }
       })
     })
-    console.log('gpascore 42', points, count)
     return ((points / count) * 100)
   }
-
-  console.log('gpascore 46', points())
 
   const numColor = (points) => {
     return points > 85 ? 'green'

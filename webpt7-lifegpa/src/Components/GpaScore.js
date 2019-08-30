@@ -37,7 +37,7 @@ const GpaScore = (props) => {
         }
       })
     })
-    return ((points / count) * 100)
+    return Math.floor((points / count) * 100)
   }
 
   const numColor = (points) => {

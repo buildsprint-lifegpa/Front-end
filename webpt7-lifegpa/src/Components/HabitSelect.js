@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Button, Icon, Grid,Form,Tab,Input } from 'semantic-ui-react'
-// import {Form,Field} from 'formik';
+import axios from 'axios'
 import { PrimaryButton } from './AppButtons';
 import styled from 'styled-components';
 import AppHeader from './AppHeader';
 import CareerHabits from './Habits/CareerHabits'
-import PersonalHabits from './Habits/PersonalHabits'
+import PersonalHabits from './Habits'
 import HealthHabits from './Habits/HealthHabit'
 import MoneyHabits from './Habits/MoneyHabits'
 
@@ -37,72 +37,66 @@ const btnStyle = {
   color: '#ffffff'
 }
 
-const panes = [
-    {
-      menuItem: 'Personal',
-      render: () => 
-      <Tab.Pane attached={false}>
-        <PersonalHabits/>
-      </Tab.Pane>,
-    },
-    {
-      menuItem: 'Health',
-      render: () => 
-      <Tab.Pane attached={false}>
-        <HealthHabits/>
-      </Tab.Pane>,
-    },
-    {
-      menuItem: 'Career',
-      render: () => 
-      <Tab.Pane attached={false}>
-        <CareerHabits/>
-      </Tab.Pane>,
-    },
-    {
-        menuItem: 'Money',
-        render: () => 
-        <Tab.Pane attached={false}>
-          <MoneyHabits/>          
-        </Tab.Pane>,
-      }
-  ]
 
 const handleClick =  () => {
 
   }
 
-function ChooseHabit(){
+const ChooseHabit = ()=> {
 
 //   const [inputValue, setInputValue] = useState("");
 
 //   const changeHandler = event => {
 //     setInputValue(event.target.value);
 //   };
+// const panes = [
+//     {
+//       menuItem: ,
+//       render: () => 
+//       <Tab.Pane attached={false}>
+//         <PersonalHabits/>
+//       </Tab.Pane>,
+//     },
+//     {
+//       menuItem: 'Health',
+//       render: () => 
+//       <Tab.Pane attached={false}>
+//         <HealthHabits/>
+//       </Tab.Pane>,
+//     },
+//     {
+//       menuItem: 'Career',
+//       render: () => 
+//       <Tab.Pane attached={false}>
+//         <CareerHabits/>
+//       </Tab.Pane>,
+//     },
+//     {
+//         menuItem: 'Money',
+//         render: () => 
+//         <Tab.Pane attached={false}>
+//           <MoneyHabits/>          
+//         </Tab.Pane>,
+//       }
+// ]
 
+  const [cat, setCat] = useState();
+  useEffect(() => {
+    axios
+      .get(`api/categories/`)
+      .then(res => {
+        setCat(res.data)
+        
+      })
+      .catch(err => console.log(err))
+  }, []);
+
+  // console.log(cat.catergoryTitle)
+  // const showCategories = cat.
+// console.log(cat.categories)
 
     return(
-    //    <Header>
-           
-    //        <AppHeader/>
-
-    //    <h3>Let's get down to it!</h3>
-    //    <p>Create a habit.</p>
-    //    <Form>
-    //      <FormHeader>
-        
-            
-    //      </FormHeader> 
-    //      <PrimaryButton
-    //         text='Get Started!'
-         
-    //       />
-    //          <Form.Field>
-    //          <input placeholder='Enter Habit' />
-    //         </Form.Field> 
-    //         <Tab menu={{attached:false,tabular:false}} panes={panes} />    
-    //     </Form>
-    //     </Header> 
+   
     <>
     <FormHeader>
     <AppHeader/>
@@ -110,7 +104,7 @@ function ChooseHabit(){
     <p>Create a habit.</p>
     </FormHeader>
     <Tab menu={{borderless: true, attached:false,tabular:false}}
-    panes={panes}
+    // panes={panes}
     />
     <br></br>
     

@@ -125,7 +125,7 @@ const SignInPage = withFormik({
     password: Yup.string().required("Cannot be an empty field")
   }),
   handleSubmit(values, { setStatus, resetForm }) {
-    console.log('signup 128', values)
+    console.log('signin 128', values)
     setStatus(values)
     resetForm()
   }

@@ -7,7 +7,8 @@ import FormikSignUp from './Components/SignUp';
 import PrivateRoute from './Components/PrivateRoute';
 import Dashboard from './Components/Dashboard';
 import AppFooter from './Components/AppFooter';
-import ChooseHabit from './Components/HabitSelect';
+import CategorySelect from './Components/Category';
+// import ChooseHabit from './Components/HabitSelect';
 // import SignUp from './Components/SignUp2';
 import CreateHabitHeader from './Components/CreateHabitHeader';
 
@@ -19,7 +20,7 @@ function App() {
       <Route exact path='/' component={Home} />
       <Route exact path="/sign-in" component={SignInPage} />
       <Route exact path='/sign-up' component={FormikSignUp} />
-      <Route path='/choose-habit' component={ChooseHabit} />
+      <Route path='/add-habit' component={CategorySelect} />
       <Route path='/habit-header' component={CreateHabitHeader} />
       <PrivateRoute path="/dashboard" component={Dashboard} />
       {/* <PrivateRoute path="/dashboard" component={AppFooter} /> */}

@@ -12,7 +12,7 @@ const NavFooter = styled.footer`
   bottom: 0;
   width: 100%;
   background-color: #ffffff;
-  /* border-top: 5px solid #596B69; */
+  border-top: 5px solid #596B69;
 
 `;
 

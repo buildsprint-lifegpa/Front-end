@@ -38,21 +38,12 @@ const HabitTitle = styled.h2`
 
 `;
 
-const HabitContainer = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  color: #D3D3D3;
-  border-bottom: 4px solid #596B69;
-  margin: 0 auto;
-
-`;
 
 const Dashboard = () => {
 
   const id = localStorage.id
   const [user, setUser] = useState();
+  const [categories, setCategories] = useState()
 
   useEffect(() => {
     axios
@@ -60,8 +51,8 @@ const Dashboard = () => {
       .then(res => {
         setUser(res.data)
       })
+      .catch(err => console.log("Dashboard: UseEffect: 64", err))
   }, [id]);
-
 
 
   if (!user)
@@ -77,16 +68,17 @@ const Dashboard = () => {
         <h1>Hi {user.username}!</h1>
         <GpaScore
           habits={user.habits} />
-        <Link to={`/dashboard/${user.id}/user-habits`}>
+        <Link
+          to={`/dashboard/${user.id}/user-habits`}>
           <PrimaryButton
             text='View Habits'
           />
         </Link>
       </ScoreContainer>
       <HabitTitle>What did you do today?</HabitTitle>
-      <HabitContainer>
-        <HabitCheckboxes />
-      </HabitContainer>
+      <HabitCheckboxes
+        habits={user.habits}
+      />
       <AppFooter />
     </>
   )

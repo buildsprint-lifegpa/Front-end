@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'semantic-ui-react';
+import { getScore } from './AppUtils';
 
 const HabitCard = (props) => {
 
@@ -12,24 +13,10 @@ const HabitCard = (props) => {
 
   const habitCards = habits.map(habit => {
 
-    const points = () => {
-      let points = 0
-      let count = 0
-      habits.map(habit => {
-        habit.history.split('').map(day => {
-          count++
-          if (day === 'x') {
-            points++
-          }
-        })
-      })
-      return Math.floor((points / count) * 100)
-    }
-
     const description = (
       <ul>
         <li>{`Category: ${categoryObj[habit.categoryId]}`}</li>
-        <li>{`Habit Score: ${points()}`}</li>
+        <li>{`Habit Score: ${getScore(habits)}`}</li>
       </ul>
     )
 

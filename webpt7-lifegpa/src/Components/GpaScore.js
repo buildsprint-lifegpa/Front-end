@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 
+import { getScore } from './AppUtils';
+
 
 const ScoreRing = styled.section`
 display: flex;
@@ -24,21 +26,7 @@ margin: 0 auto;
 
 const GpaScore = (props) => {
 
-  const habitList = props.habits
-
-  const points = () => {
-    let points = 0
-    let count = 0
-    habitList.map(habit => {
-      habit.history.split('').map(day => {
-        count++
-        if (day === 'x') {
-          points++
-        }
-      })
-    })
-    return Math.floor((points / count) * 100)
-  }
+  const habits = props.habits
 
   const numColor = (points) => {
     return points > 85 ? 'green'
@@ -47,13 +35,12 @@ const GpaScore = (props) => {
   }
 
   const scoreColor = {
-    borderColor: numColor(points())
+    borderColor: numColor(getScore(habits))
   }
-
 
   return (
     <ScoreRing style={scoreColor}>
-      <p className='score'>{points()}</p>
+      <p className='score'>{getScore(habits)}</p>
       <p className='score-text'>Your LifeGPA</p>
     </ScoreRing>
   )

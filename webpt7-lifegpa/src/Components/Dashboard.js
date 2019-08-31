@@ -12,13 +12,8 @@ import HabitCheckboxes from './HabitCheckboxes';
 
 
 
-
-const DashboardContainer = styled.section`
-  
-`;
 const ScoreContainer = styled.section`
   max-width: 80%;
-  /* height: 55vh; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -65,7 +60,7 @@ const Dashboard = () => {
       .then(res => {
         setUser(res.data)
       })
-  }, []);
+  }, [id]);
 
 
 

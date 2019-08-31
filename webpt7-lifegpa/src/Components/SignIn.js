@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import * as Yup from 'yup'
 import { Link } from 'react-router-dom'
-import { Button, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import { Form, Field, withFormik } from 'formik'
 import styled from 'styled-components'
 import axios from 'axios'
 
 import AppHeader from './AppHeader';
 import userImage from '../assets/large.png'
+import { PrimaryButton } from './AppButtons';
 
-// import { user } from '../dummyData';
 
 const SignInContainer = styled.section`
-  max-width: 80%;
+  width: 80%;
+  max-width: 500px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -24,6 +25,9 @@ const SignInContainer = styled.section`
     }
 
     form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       margin-bottom: 20px;
 
       input {
@@ -34,23 +38,11 @@ const SignInContainer = styled.section`
         margin: 10px 0;
         padding: 5px;
       }
-
-      .button {
-        margin-top: 10px;
-      }
     }
 `;
 
-const btnStyle = {
-  backgroundColor: "#596B69",
-  border: '1px solid #596B69',
-  color: '#ffffff'
-}
-
 
 const LogIn = ({ errors, touched, status, history }) => {
-
-
 
   useEffect(() => {
     if (status) {
@@ -65,7 +57,7 @@ const LogIn = ({ errors, touched, status, history }) => {
         })
         .catch(err => console.log(err))
     }
-  }, [status])
+  }, [status, history])
 
   const signUpLink = (
     <Link to='/sign-up' className='sign-up-link'>Sign Up.</Link>
@@ -79,31 +71,28 @@ const LogIn = ({ errors, touched, status, history }) => {
         <Grid className="sign-in-form">
           <Grid.Column>
             <h1>Welcome Back!</h1>
-            <Grid.Column>
-              <Form>
-                <Field
-                  component='input'
-                  type='text'
-                  name='username'
-                  placeholder='User Name'
-                />
-                {touched.username && errors.username && <p className='error'>{errors.username}</p>}
-                <Field
-                  component='input'
-                  type='password'
-                  name='password'
-                  placeholder='Password'
-                />
-                {touched.password && errors.password && <p className='error'>{errors.password}</p>}
-                <Button
-                  fluid
-                  primary
-                  style={btnStyle}
-                  content='SIGN IN'
-                  type='submit'
-                />
-              </Form>
-            </Grid.Column>
+            <Form>
+              <Field
+                component='input'
+                type='text'
+                name='username'
+                placeholder='User Name'
+              />
+              {touched.username && errors.username && <p className='error'>{errors.username}</p>}
+              <Field
+                component='input'
+                type='password'
+                name='password'
+                placeholder='Password'
+              />
+              {touched.password && errors.password && <p className='error'>{errors.password}</p>}
+              <PrimaryButton
+                text='SIGN IN'
+                type='submit'
+                margin='5px auto'
+                width='100%'
+              />
+            </Form>
             <p>Don't have an account? {signUpLink}</p>
           </Grid.Column>
         </Grid>
@@ -112,7 +101,7 @@ const LogIn = ({ errors, touched, status, history }) => {
   )
 }
 
-const SignInPage = withFormik({
+const SignIn = withFormik({
   mapPropsToValues({ username, password }) {
     return {
       username: username || "",
@@ -129,4 +118,4 @@ const SignInPage = withFormik({
   }
 })(LogIn)
 
-export default SignInPage
+export default SignIn

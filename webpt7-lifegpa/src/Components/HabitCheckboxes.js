@@ -7,16 +7,17 @@ import { PrimaryButton } from './AppButtons';
 
 const HabitForm = () => {
 
+  const id = localStorage.id
+
   const [habits, setHabits] = useState([]);
-  console.log("SampleForm: 11", habits);
 
   useEffect(() => {
-    axios.get('/api/users/habits/1')
+    axios.get(`/api/users/habits/${id}`)
       .then(res => {
         setHabits(res.data.habits)
       })
       .catch(err => console.log("SamplForm: useEffect: 18", err))
-  }, []);
+  }, [id]);
 
   if (!habits)
     return (

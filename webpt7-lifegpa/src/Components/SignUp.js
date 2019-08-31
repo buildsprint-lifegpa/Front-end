@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios'
 import * as Yup from 'yup'
-import { Button, Icon } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import { withFormik, Form, Field, ErrorMessage } from 'formik';
 import logo from '../assets/logomark-white.png'
 import styled from 'styled-components';
@@ -78,7 +78,7 @@ function NewUser({ status, touched, history, values }) {
                     console.log(err);
                 });
         }
-    }, [status])
+    }, [status, history])
     const signIn = (
         <a href='/sign-in'>Sign In.</a>
     )

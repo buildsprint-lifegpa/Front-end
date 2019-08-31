@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card } from 'semantic-ui-react';
+import { Card, Button } from 'semantic-ui-react';
 import axios from 'axios'
 
 const HabitCard = (props) => {
@@ -22,6 +22,7 @@ const HabitCard = (props) => {
       .then(res => setCategories(res.data.categories))
       .catch(err => console.log(err))
   }, []);
+
 
   if (!habits || !categories)
     return (
@@ -56,16 +57,12 @@ const HabitCard = (props) => {
       </ul>
     )
 
-    const extra = (
-      <button onClick={props.clicked}>Delete Habit</button>
-    )
-
     return (
       <Card
         key={habit.id}
         header={habit.habitTitle}
         description={description}
-        extra={extra}
+        extra={<Button content="Delete Habit" onClick={console.log("Delete Button")} />}
       />
     )
   })

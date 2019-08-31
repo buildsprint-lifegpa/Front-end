@@ -6,9 +6,7 @@ import Home from './Components/Home';
 import FormikSignUp from './Components/SignUp';
 import PrivateRoute from './Components/PrivateRoute';
 import Dashboard from './Components/Dashboard';
-import AppFooter from './Components/AppFooter';
 import ChooseHabit from './Components/HabitSelect';
-// import SignUp from './Components/SignUp2';
 import CreateHabitHeader from './Components/CreateHabitHeader';
 import UserHabits from './Components/UserHabits';
 

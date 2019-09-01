@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Field, withFormik } from "formik";
 import styled from 'styled-components'
+import axios from 'axios'
 
 import { PrimaryButton } from './AppButtons';
 
@@ -16,9 +17,6 @@ const CheckBoxContainer = styled.div`
     flex-direction: column;
     margin: 20px auto;
   }
-
-  .update-btn {}
-
 `;
 
 
@@ -57,24 +55,40 @@ const HabitForm = (props) => {
 };
 
 
-// const id = localStorage.id
-
-// const habits = () => {
-//   useEffect(() => {
-//     axios.get(`/api/habits/${id}`)
-//       .then(res => res.data.categories)
-//       .catch(err => console.log("Dashboard: useEffect: 59", err))
-//   }, [id])
-// }
 const HabitCheckboxes = withFormik({
 
   handleSubmit(values, { resetForm }) {
+    //Go through the data stored in the form object
+    for (let key in values)
+      //find the checkboxes by locating the boolean values
+      if (typeof values[key] === "boolean") {
+        //loop over the habits in props
+        values.habits.map(habit => {
+          //if the habitTitle matches the checkbox key
+          if (habit.habitTitle === key) {
 
-    console.log("HabitCheckboxes: handleSubmit: 62", values)
-    // console.log(habits)
-    // for (key in values) {
-    //   axios.put(`/api/habits/${id}`)
-    // }
+            let updateObj = {
+              habitTitle: habit.habitTitle,
+              categoryId: habit.categoryId,
+              userId: habit.userId
+            }
+
+            if (!!values[key]) {
+              updateObj.history = habit.history.concat('x')
+              axios.put(`/api/habits/${habit.id}`, updateObj)
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+
+            } else {
+              updateObj.history = habit.history.concat(' ')
+              axios.put(`/api/habits/${habit.id}`, updateObj)
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+            }
+          }
+        })
+      }
+    localStorage.submitCounter++
     resetForm()
   }
 })(HabitForm);

@@ -52,6 +52,7 @@ const LogIn = ({ errors, touched, status, history }) => {
         .then(res => {
           let id = res.data.user.id
           localStorage.setItem('id', res.data.user.id)
+          localStorage.setItem('submitCounter', 0)
           localStorage.token = res.data.token
           history.push(`/dashboard/${id}`)
         })

@@ -43,7 +43,6 @@ width: 60px;
 `;
 
 const FormContainer = styled.section`
-/* border: 1px solid black; */
 margin: 15%;
 color: #596B69;
 `;

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'semantic-ui-react';
+
 import { getScore } from './AppUtils';
 
 const HabitCard = (props) => {
@@ -25,7 +26,7 @@ const HabitCard = (props) => {
         key={habit.id}
         header={habit.habitTitle}
         description={description}
-        extra={<Button content="Delete Habit" onClick={() => props.clicked} />}
+        extra={<Button content="Delete Habit" onClick={() => console.log('clicked')} />}
       />
     )
   })

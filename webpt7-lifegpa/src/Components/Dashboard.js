@@ -42,8 +42,8 @@ const HabitTitle = styled.h2`
 const Dashboard = () => {
 
   const id = localStorage.id
+  let submitCounter = localStorage.submitCounter
   const [user, setUser] = useState();
-  const [categories, setCategories] = useState()
 
   useEffect(() => {
     axios
@@ -52,11 +52,12 @@ const Dashboard = () => {
         setUser(res.data)
       })
       .catch(err => console.log("Dashboard: UseEffect: 64", err))
-  }, [id]);
+  }, [submitCounter]);
 
 
   if (!user)
     return <div>Loading...</div>
+
 
   return (
     <>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, Button } from 'semantic-ui-react';
+
 import { getScore } from './AppUtils';
 
 const HabitCard = (props) => {

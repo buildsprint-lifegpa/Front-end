@@ -31,8 +31,6 @@ const UserHabits = () => {
       <div>Loading...</div>
     )
 
-  console.log(user)
-
   return (
     <>
       <AppHeader

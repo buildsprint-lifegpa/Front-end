@@ -17,9 +17,6 @@ const CheckBoxContainer = styled.div`
     flex-direction: column;
     margin: 20px auto;
   }
-
-  .update-btn {}
-
 `;
 
 

@@ -18,7 +18,6 @@ const HomeContainer = styled.section`
 
   h3 {
     margin: 0 auto;
-
   }
 
   .button {

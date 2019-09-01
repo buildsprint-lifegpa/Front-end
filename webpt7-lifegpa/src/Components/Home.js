@@ -26,8 +26,6 @@ const HomeContainer = styled.section`
   }
 `;
 
-const br = `\n`
-
 const Home = () => {
 
   return (

@@ -25,7 +25,7 @@ const HabitCard = (props) => {
         key={habit.id}
         header={habit.habitTitle}
         description={description}
-        extra={<Button content="Delete Habit" onClick={() => props.clicked} />}
+        extra={<Button content="Delete Habit" onClick={() => console.log('clicked')} />}
       />
     )
   })

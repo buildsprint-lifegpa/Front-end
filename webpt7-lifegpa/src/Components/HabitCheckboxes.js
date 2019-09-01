@@ -69,8 +69,6 @@ const HabitCheckboxes = withFormik({
         values.habits.map(habit => {
           //if the habitTitle matches the checkbox key
           if (habit.habitTitle === key) {
-            axios.get(`/api/habits/${habit.id}`)
-              .then(res => console.log(res.data))
 
             let updateObj = {
               habitTitle: habit.habitTitle,
@@ -92,8 +90,8 @@ const HabitCheckboxes = withFormik({
             }
           }
         })
-        localStorage.submitCounter++
       }
+    localStorage.submitCounter++
     resetForm()
   }
 })(HabitForm);

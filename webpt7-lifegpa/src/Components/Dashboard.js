@@ -42,7 +42,7 @@ const HabitTitle = styled.h2`
 const Dashboard = () => {
 
   const id = localStorage.id
-  const submitCounter = localStorage.submitCounter
+  let submitCounter = localStorage.submitCounter
   const [user, setUser] = useState();
 
   useEffect(() => {

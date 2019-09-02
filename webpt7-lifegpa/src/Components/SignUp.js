@@ -77,7 +77,7 @@ function NewUser({ status, touched, history, values }) {
                     console.log(err);
                 });
         }
-    }, [status, history])
+    }, [status, history, values])
     const signIn = (
         <a href='/sign-in'>Sign In.</a>
     )

@@ -26,6 +26,9 @@ const UserHabits = () => {
       .catch(err => console.log(err))
   }, [id]);
 
+  const btnClick = () => console.log('clicked')
+
+
   if (!user || !categories)
     return (
       <div>Loading...</div>
@@ -41,6 +44,7 @@ const UserHabits = () => {
       <HabitCard
         habits={user.habits}
         categories={categories}
+        clicked={btnClick}
       />
       <AppFooter />
     </>

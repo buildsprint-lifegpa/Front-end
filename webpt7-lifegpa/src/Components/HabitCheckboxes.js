@@ -20,9 +20,12 @@ const CheckBoxContainer = styled.div`
 `;
 
 
+
 const HabitForm = (props) => {
 
   const habitCheckboxes = props.habits.map(habit => {
+
+    props.checkBoxObj[habit.habitTitle] = false
 
     return (
       <label key={habit.id}>
@@ -36,6 +39,7 @@ const HabitForm = (props) => {
       </label>
     )
   })
+
 
   return (
     <CheckBoxContainer>
@@ -57,7 +61,18 @@ const HabitForm = (props) => {
 
 const HabitCheckboxes = withFormik({
 
+  mapPropsToValues({ submitCounter, habits, ...checkBoxObj }) {
+    return {
+      ...checkBoxObj,
+      submitCounter: submitCounter,
+      habits: habits
+    }
+  },
+
   handleSubmit(values, { resetForm }) {
+
+    values.submitCounter()
+
     //Go through the data stored in the form object
     for (let key in values)
       //find the checkboxes by locating the boolean values
@@ -66,19 +81,19 @@ const HabitCheckboxes = withFormik({
         values.habits.map(habit => {
           //if the habitTitle matches the checkbox key
           if (habit.habitTitle === key) {
-
+            // load the  obj with the required habit info for the api call
             let updateObj = {
               habitTitle: habit.habitTitle,
               categoryId: habit.categoryId,
               userId: habit.userId
             }
-
+            // if true add 'x' to history
             if (!!values[key]) {
               updateObj.history = habit.history.concat('x')
               axios.put(`/api/habits/${habit.id}`, updateObj)
                 .then(res => console.log(res))
                 .catch(err => console.log(err))
-
+              // if false add ' ' to history
             } else {
               updateObj.history = habit.history.concat(' ')
               axios.put(`/api/habits/${habit.id}`, updateObj)
@@ -88,7 +103,7 @@ const HabitCheckboxes = withFormik({
           }
         })
       }
-    localStorage.submitCounter++
+    console.log("HabitForm: handleSubmit: 106", values, values.checkBoxObj)
     resetForm()
   }
 })(HabitForm);

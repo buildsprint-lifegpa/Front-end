@@ -42,23 +42,32 @@ const HabitTitle = styled.h2`
 const Dashboard = () => {
 
   const id = localStorage.id
-  let submitCounter = localStorage.submitCounter
   const [user, setUser] = useState();
+  const [counter, setCounter] = useState(0)
+
+
+  const submitCounter = () => {
+    setCounter(counter + 1)
+    console.log("submitCounter", counter)
+  }
+
+  const checkBoxObj = {}
 
   useEffect(() => {
     axios
       .get(`api/users/habits/${id}`)
       .then(res => {
+        console.log("useEffect", counter)
         setUser(res.data)
       })
       .catch(err => console.log("Dashboard: UseEffect: 64", err))
-  }, [submitCounter]);
+  }, [counter]);
 
 
   if (!user)
     return <div>Loading...</div>
 
-
+  console.log('dashboard 66', counter)
   return (
     <>
       <AppHeader
@@ -68,7 +77,8 @@ const Dashboard = () => {
       <ScoreContainer>
         <h1>Hi {user.username}!</h1>
         <GpaScore
-          habits={user.habits} />
+          habits={user.habits}
+          counter={counter} />
         <Link
           to={`/dashboard/${user.id}/user-habits`}>
           <PrimaryButton
@@ -79,6 +89,8 @@ const Dashboard = () => {
       <HabitTitle>What did you do today?</HabitTitle>
       <HabitCheckboxes
         habits={user.habits}
+        submitCounter={submitCounter}
+        checkBoxObj={checkBoxObj}
       />
       <AppFooter />
     </>
